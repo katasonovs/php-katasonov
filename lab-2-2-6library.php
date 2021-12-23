@@ -49,6 +49,7 @@ function Calculate(){
 			}
 		} 
 	} 
+	
 	echo "Сумма:".$summ."<br>";
 }
 
