@@ -50,7 +50,7 @@
 <li><a href='/s3-3.php'>___s3___</a></li>
 <li><a href='/s3-4.php'>___s4___</a></li>
 <li><a href='/s3-5.php'>___s5___</a></li>
-<li><a href='/s3-6.html'>___s6___</a></li>
+<li><a href='/s3-6.php'>___s6___</a></li>
 </ul>
 
 <a href='./4/'>Лабораторная работа №4</a><br>
