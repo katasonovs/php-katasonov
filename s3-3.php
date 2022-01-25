@@ -5,7 +5,7 @@
     <title>Katasonov</title>
 </head>
 <body>
-<FORM method="post" action="<?php print $PHP_SELF ?>">
+<FORM method="post" action="<?php print $_SERVER["PHP_SELF"] ?>">
 	Четный вариант.
     Введите число:
     <p> <INPUT type="text" name="a" size="3">
@@ -21,7 +21,8 @@
         <br/>
         <br/> <INPUT type="submit" name="run" value="Рассчитать"></p>
 </FORM>
-<?
+<?php
+if(isset($_POST["run"])) {
     if (!is_numeric($_POST["a"])) {
 	   echo "Введите числа";
 	   exit();
@@ -85,6 +86,7 @@
         }
         return true;
     }
+}
 ?>
 </body>
 </html>

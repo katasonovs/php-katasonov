@@ -1,7 +1,7 @@
 <head>
     <title>KatasonovSA-1</title>
 </head>
-<?
+<?php
 if ($_POST["a"]>$_POST["b"]) {
 	echo ("Наибольшее число a=" . $_POST["a"]);
 } elseif ($_POST["a"] == $_POST["b"]) {

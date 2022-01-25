@@ -3,7 +3,7 @@
         <TITLE> Катасонов, Вход в систему</TITLE>
     </HEAD>
 <BODY>
-    <FORM  method="post" action="<?php print $PHP_SELF ?>">
+    <FORM  method="post" action="<?php print $_SERVER["PHP_SELF"] ?>">
       Здравствуйте! Введите ваш логин:
       <br><INPUT type="text" name="login" size="20">
       <P> <INPUT type="submit" name="obr" value="Войти">

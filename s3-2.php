@@ -3,7 +3,7 @@
     <title>Katasonov2</title>
 </head>
 
-<?
+<?php
 	if (is_numeric($_POST["a"]) and is_numeric($_POST["a1"])) {
 
     } else {

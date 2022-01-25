@@ -3,7 +3,7 @@
         <TITLE> Катасонов</TITLE>
     </HEAD>
 <BODY>
-    <FORM  method="post" action="<?php print $PHP_SELF ?>">
+    <FORM  method="post" action="<?php print $_SERVER["PHP_SELF"] ?>">
         Здравствуйте! Введите ваше имя:
         <br><INPUT type="text" name="name" size="20">
             <p>1. Считаете ли Вы, что у многих ваших знакомых хороший характер? <p> да <INPUT type="checkbox" checked="checked" name="1"> <p> нет <INPUT type="checkbox" name="1-">
@@ -30,6 +30,7 @@
             <P> <INPUT type="submit" name="_check" value="Проверить">
     </FORM>
     <?php
+      if(isset($_POST["_check"])) {
 	$answerschecked = array( 3,9,10,13,14,19);
 	$answersmissed = array( 1,2,4,5,6,7,8,11,12,15,16,17,20);
 	$score = 0;
@@ -49,6 +50,7 @@
 		echo 'Вы не лишены недостатков, но с вами можно ладить';}
 	else if ($score <8){
 		echo 'Вашим друзьям можно посочувствовать';}
+  }
     ?>
 </BODY>
 </HTML>

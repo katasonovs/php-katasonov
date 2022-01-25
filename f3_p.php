@@ -1,5 +1,5 @@
 <?php header('Content-Type: text/html; charset=UTF-8'); ?>
-<?
+<?php
 if ($_POST["d"]=="plus") {
  $c=$_POST["a"]+$_POST["b"];
  echo ("сумма чисел = $c");
