@@ -1,10 +1,5 @@
 <?php header('Content-Type: text/html; charset=windows-1251'); ?>
 
-<?php
-session_start();
-if(!$_SESSION["rule"]) header("Location: .");
-?>
-
 <html>
 <head> <title> Добавление новой записи </title> </head>
 <body>

@@ -1,19 +1,19 @@
+<?php header('Content-Type: text/html; charset=windows-1251'); ?>
+
 <HTML> 
 	<HEAD>
-		<meta charset="UTF-8">
         <TITLE>Katasonov</TITLE>
     </HEAD>
 	<BODY>
-<?php header('Content-Type: text/html; charset=UTF-8'); ?>
 <?php
-  echo "<h1>РљР°С‚Р°СЃРѕРЅРѕРІ РЎ.Рђ.</h1><br>";
+  echo "<h1>Катасонов С.А.</h1><br>";
   
   echo "<form method='post' action='".$_SERVER["PHP_SELF"]."'>";
-  echo "<h2>12. РџРѕР»СЊР·РѕРІР°С‚РµР»РµРј Р·Р°РґР°РµС‚СЃСЏ РїСЂРѕРёР·РІРѕР»СЊРЅС‹Р№ С‚РµРєСЃС‚ Рё РґРІР° СЃРёРјРІРѕР»Р°. РџРµСЂРµРїРµС‡Р°С‚Р°С‚СЊ Р·Р°РґР°РЅРЅС‹Р№ С‚РµРєСЃС‚, СѓРґР°Р»РёРІ РёР· РЅРµРіРѕ РІСЃРµ РІС…РѕР¶РґРµРЅРёСЏ РІС‚РѕСЂРѕРіРѕ СЃРёРјРІРѕР»Р°, РЅРµРїРѕСЃСЂРµРґСЃС‚РІРµРЅРЅРѕ РїРµСЂРµРґ РєРѕС‚РѕСЂС‹РјРё РЅР°С…РѕРґРёС‚СЃСЏ РїРµСЂРІС‹Р№ СЃРёРјРІРѕР».</h2>";
-  echo "РўРµРєСЃС‚:<br><textarea type='text' name='text12' cols='30' rows='5'></textarea><br>";
-  echo "РџРµСЂРІС‹Р№ СЃРёРјРІРѕР»: <input type='text' name='before' size='5'><br>";
-  echo "Р’С‚РѕСЂРѕР№ СЃРёРјРІРѕР»: <input type='text' name='after' size='5'><br>";
-  echo "<input type='submit' name='submit12' value='Р’С‹РїРѕР»РЅРёС‚СЊ'></form>";
+  echo "<h2>12. Пользователем задается произвольный текст и два символа. Перепечатать заданный текст, удалив из него все вхождения второго символа, непосредственно перед которыми находится первый символ.</h2>";
+  echo "Текст:<br><textarea type='text' name='text12' cols='30' rows='5'></textarea><br>";
+  echo "Первый символ: <input type='text' name='before' size='5'><br>";
+  echo "Второй символ: <input type='text' name='after' size='5'><br>";
+  echo "<input type='submit' name='submit12' value='Выполнить'></form>";
 
   
   if(isset($_POST["submit12"])) {
@@ -21,73 +21,50 @@
     $before = strtolower($_POST["before"]);
     $after = strtolower($_POST["after"]);
 
-    for($i = 0; $i < count($symbols); $i++) {
-      if(strtolower($symbols[$i - 1]) == $before && strtolower($symbols[$i]) == $after) continue;
-      echo $symbols[$i];
+    $symbols = array_reverse($symbols);
+    echo $symbols[count($symbols) - 1];
+    for($i = count($symbols) - 1; $i > 0; $i--) {
+      if(strtolower($symbols[$i - 1]) == $after && strtolower($symbols[$i]) == $before) continue;
+      echo $symbols[$i - 1];
     }
   }
   
   echo "<form method='post' action='".$_SERVER["PHP_SELF"]."'>";
-  echo "<h2>15. Р”Р°РЅР° СЃС‚СЂРѕРєР°-РїСЂРµРґР»РѕР¶РµРЅРёРµ. Р—Р°С€РёС„СЂРѕРІР°С‚СЊ РµРµ, РїРѕРјРµСЃС‚РёРІ РІРЅР°С‡Р°Р»Рµ РІСЃРµ СЃРёРјРІРѕР»С‹,
-		СЂР°СЃРїРѕР»РѕР¶РµРЅРЅС‹Рµ РЅР° С‡РµС‚РЅС‹С… РјРµСЃС‚Р°С…, Р° Р·Р°С‚РµРј, РІ РѕР±СЂР°С‚РЅРѕРј РїРѕСЂСЏРґРєРµ, РІСЃРµ СЃРёРјРІРѕР»С‹,
-		СЂР°СЃРїРѕР»РѕР¶РµРЅРЅС‹Рµ РЅР° РЅРµС‡РµС‚РЅС‹С… РјРµСЃС‚Р°С…</h2>";
-  echo "РўРµРєСЃС‚:<br><textarea type='text' name='text15' cols='30' rows='5'></textarea><br>";
-  echo "<input type='submit' name='submit15' value='Р’С‹РїРѕР»РЅРёС‚СЊ'></form>";
+  echo "<h2>15. Дана строка-предложение. Зашифровать ее, поместив вначале все символы,
+		расположенные на четных местах, а затем, в обратном порядке, все символы,
+		расположенные на нечетных местах</h2>";
+  echo "Текст:<br><textarea type='text' name='text15' cols='30' rows='5'></textarea><br>";
+  echo "<input type='submit' name='submit15' value='Выполнить'></form>";
 
   if(isset($_POST["submit15"])) {
-   $chet = array();
-   $nechet = array();
-   $chars = str_split($_POST["text15"]);
-   for($i=0; $i<count($chars); $i++)
-   {
-	   if(($i+1)%2==0)
-		   array_push($chet, $chars[$i]);
-	   else
-		   array_push($nechet, $chars[$i]);
-   }
-   $finalstr = "";
-   for($i=0; $i<count($chet); $i++)
-   {
-	   $finalstr.=$chet[$i];
-   }
-   for($i=count($nechet)-1; $i>=0; $i--)
-   {
-	   $finalstr.=$nechet[$i];
-   }
-   
-   echo "РС‚РѕРі: ".$finalstr." chet:".count($chet)." nechet:".count($nechet);
+   $symbols = str_split($_POST["text15"]);
+   for($i = 0; $i < count($symbols); $i++) if(($i + 1) % 2 == 0) echo $symbols[$i];
+   for($i = count($symbols) - 1; $i >= 0; $i--) if(($i + 1) % 2 == 1) echo $symbols[$i];
   }
   echo "<br><br><br>";
   
   echo "<form method='post' action='".$_SERVER["PHP_SELF"]."'>";
-  echo "<h2>18. Р”Р°РЅ С‚РµРєСЃС‚. РћРїСЂРµРґРµР»РёС‚Рµ, РєР°РєРёС… Р±СѓРєРІ (СЃС‚СЂРѕС‡РЅС‹С… РёР»Рё РїСЂРѕРїРёСЃРЅС‹С…) РІ РЅРµРј Р±РѕР»СЊС€Рµ, Рё
-		РїСЂРµРѕР±СЂР°Р·СѓР№С‚Рµ СЃР»РµРґСѓСЋС‰РёРј РѕР±СЂР°Р·РѕРј: РµСЃР»Рё Р±РѕР»СЊС€Рµ РїСЂРѕРїРёСЃРЅС‹С… Р±СѓРєРІ, С‡РµРј СЃС‚СЂРѕС‡РЅС‹С…, С‚Рѕ РІСЃРµ
-		Р±СѓРєРІС‹ РїСЂРµРѕР±СЂР°Р·СѓСЋС‚СЃСЏ РІ РїСЂРѕРїРёСЃРЅС‹Рµ; РµСЃР»Рё Р±РѕР»СЊС€Рµ СЃС‚СЂРѕС‡РЅС‹С…, С‚Рѕ РІСЃРµ Р±СѓРєРІС‹
-		РїСЂРµРѕР±СЂР°Р·СѓСЋС‚СЃСЏ РІ СЃС‚СЂРѕС‡РЅС‹Рµ; РµСЃР»Рё РїРѕСЂРѕРІРЅСѓ Рё С‚РµС… Рё РґСЂСѓРіРёС… вЂ” С‚РµРєСЃС‚ РѕСЃС‚Р°РµС‚СЃСЏ Р±РµР·
-		РёР·РјРµРЅРµРЅРёСЏ</h2>";
-  echo "РўРµРєСЃС‚:<br><textarea type='text' name='text18' cols='30' rows='5'></textarea><br>";
-  echo "<input type='submit' name='submit18' value='Р’С‹РїРѕР»РЅРёС‚СЊ'></form>";
+  echo "<h2>18. Дан текст. Определите, каких букв (строчных или прописных) в нем больше, и
+		преобразуйте следующим образом: если больше прописных букв, чем строчных, то все
+		буквы преобразуются в прописные; если больше строчных, то все буквы
+		преобразуются в строчные; если поровну и тех и других — текст остается без
+		изменения</h2>";
+  echo "Текст:<br><textarea type='text' name='text18' cols='30' rows='5'></textarea><br>";
+  echo "<input type='submit' name='submit18' value='Выполнить'></form>";
   if(isset($_POST["submit18"])) {
-   $zaglav = 0;
-   $stroch = 0;
-   $chars = str_split($_POST["text18"]);
-   for($i=0; $i<count($chars); $i++)
-   {
-	   if(ctype_upper($chars[$i]))
-		   $zaglav++;
-	   else
-		   $stroch++;
-   }
-   $finalstr = "";
-   if($zaglav<$stroch)
-	   $finalstr = mb_strtolower($_POST["text18"]);
-   else if($zaglav>$stroch)
-	   $finalstr = mb_strtoupper($_POST["text18"]);
-   else 
-	   $finalstr = $_POST["text18"];
+    $rus_upper = str_split("ЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮЁ");
+    $rus_lower = str_split("йцукенгшщзхъфывапролджэячсмитьбюё");
+    $eng_upper = str_split("qwertyuiopasdfghjklzxcvbnm");
+    $eng_lower = str_split("QWERTYUIOPASDFGHJKLZXCVBNM");
 
-   
-   echo "РС‚РѕРі: ".$finalstr." stroch:".$stroch." zaglav:".$zaglav;
+    $lower = $upper = 0;
+    foreach(str_split($_POST["text18"]) as $char)
+      if(in_array($char, $rus_lower) || in_array($char, $eng_upper)) $lower++;
+      elseif(in_array($char, $rus_upper) || in_array($char, $eng_lower)) $upper++;
+  
+    if($lower > $upper) echo mb_convert_case($_POST["text18"], MB_CASE_LOWER, "windows-1251");
+    elseif($upper > $lower) echo mb_convert_case($_POST["text18"], MB_CASE_UPPER, "windows-1251");
+    else echo $_POST["text18"];
   }
 
   

@@ -1,10 +1,5 @@
 <?php header('Content-Type: text/html; charset=windows-1251'); ?>
 
-<?php
-session_start();
-if(!$_SESSION["rule"]) header("Location: .");
-?>
-
 <html>
 <head>
 <title> Редактирование данных </title>
@@ -19,7 +14,6 @@ if(!$_SESSION["rule"]) header("Location: .");
  $id_alien=$st["id_alien"];
  $count=$st["count"];
  }
-print "<form action='save_edit_population.php' metod='get'>";
 
 print "<br>id Планеты: <select name='id_planet'>";
 $result=mysqli_query($conn, "SELECT * FROM planet");
